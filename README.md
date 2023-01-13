@@ -1,1 +1,2 @@
 # SM-Projekt
+Marcin Kaczanowski
