@@ -2,9 +2,9 @@ package com.hurtownia;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +14,9 @@ import com.hurtownia.database.user.Roles;
 import com.hurtownia.database.user.Users;
 import com.hurtownia.database.user.ViewModel;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.Serializable;
+
+public class MainActivity extends AppCompatActivity implements Serializable {
 
     private EditText name;
     private EditText password;
@@ -27,8 +29,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         name = findViewById(R.id.etName);
         password = findViewById(R.id.etPassword);
+        TextView register = findViewById(R.id.tvRegister);
         Button loginButton = findViewById(R.id.loginButton);
         viewModel = new ViewModelProvider(this).get(ViewModel.class);
+
+        register.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+            startActivity(intent);
+        });
 
         loginButton.setOnClickListener(view -> {
             String sLogin = name.getText().toString();
@@ -38,13 +46,21 @@ public class MainActivity extends AppCompatActivity {
             if (sLogin.isEmpty() || sPassword.isEmpty()) {
                 loginResult = R.string.empty_login_or_password;
             }
-            else if(login(sLogin, sPassword)) {
-                loginResult = R.string.login_success;
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(intent);
-            }
             else {
-                loginResult = R.string.login_failed;
+                Users user = viewModel.find(sLogin);
+                if(user != null && user.getLogin().equals(sLogin) && user.getPassword().equals(sPassword)) {
+                    loginResult = R.string.login_success;
+                    Intent intent;
+                    if(user.getRole() == Roles.Admin)
+                        intent = new Intent(MainActivity.this, AdminHomeActivity.class);
+                    else
+                        intent = new Intent(MainActivity.this, HomeActivity.class);
+                    intent.putExtra("USER", user);
+                    startActivity(intent);
+                }
+                else {
+                    loginResult = R.string.login_failed;
+                }
             }
 
             Toast.makeText(MainActivity.this, loginResult, Toast.LENGTH_SHORT).show();
@@ -69,10 +85,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-    private boolean login(String login, String password) {
-        Users up = viewModel.find(login);
-        if(up == null)  return false;
-        return up.getLogin().equals(login) && up.getPassword().equals(password);
     }
 }

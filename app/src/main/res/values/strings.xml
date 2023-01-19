@@ -6,4 +6,17 @@
     <string name="empty_login_or_password">Login i hasło nie mogą być puste!</string>
     <string name="login_failed">Błędny login lub hasło!</string>
     <string name="login_success">Zalogowano!</string>
+    <string name="confirm_password">Potwierdź hasło:</string>
+    <string name="register">Zarejestruj się!</string>
+    <string name="register_to_login">Posiadasz już konto? Zaloguj się!</string>
+    <string name="login_to_register">Nie posiadasz konta? Zarejestruj się!</string>
+    <string name="password_dont_match">Podano różne hasła!</string>
+    <string name="already_exists">Użytkownik o takim loginie już istnieje!</string>
+    <string name="registration_successful">Pomyślnie zarejestrowano!</string>
+    <string name="registration_failed">Podczas rejestracji wystąpił błąd!</string>
+    <string name="welcome">Witaj %1$s!</string>
+    <string name="products">Produkty</string>
+    <string name="location">Lokacja</string>
+    <string name="settings">Ustawienia</string>
+    <string name="logout">Wyloguj</string>
 </resources>
