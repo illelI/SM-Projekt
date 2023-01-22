@@ -4,12 +4,12 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 
-public class ViewModel extends AndroidViewModel {
-    private final Repository uRepository;
+public class UserViewModel extends AndroidViewModel {
+    private final UserRepository uRepository;
 
-    public ViewModel(Application application) {
+    public UserViewModel(Application application) {
         super(application);
-        uRepository = new Repository(application);
+        uRepository = new UserRepository(application);
     }
     public void insert(Users up) {
         uRepository.insert(up);

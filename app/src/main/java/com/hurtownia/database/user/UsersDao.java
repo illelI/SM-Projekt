@@ -7,11 +7,11 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 @Dao
-public interface UserPasswordDao {
+public interface UsersDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Users up);
+    void insert(Users user);
     @Delete
-    void delete(Users up);
+    void delete(Users user);
     @Query("SELECT * FROM Users WHERE login=(:login)")
     Users find(String login);
     @Query("UPDATE Users SET role = (:role) WHERE login = (:login)")

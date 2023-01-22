@@ -8,16 +8,19 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.hurtownia.database.products.Product;
+import com.hurtownia.database.products.ProductDao;
 import com.hurtownia.database.user.Roles;
-import com.hurtownia.database.user.UserPasswordDao;
+import com.hurtownia.database.user.UsersDao;
 import com.hurtownia.database.user.Users;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Users.class}, version = 2)
+@Database(entities = {Users.class, Product.class}, version = 2)
 public abstract class DB extends RoomDatabase {
-    public abstract UserPasswordDao upDao();
+    public abstract UsersDao upDao();
+    public abstract ProductDao pDao();
 
     private static volatile DB INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -28,7 +31,7 @@ public abstract class DB extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase database) {
             super.onCreate(database);
             dbWriteExecutor.execute(() -> {
-                UserPasswordDao dao = INSTANCE.upDao();
+                UsersDao dao = INSTANCE.upDao();
                 Users user = new Users("admin", "admin", Roles.Admin);
                 dao.insert(user);
             });

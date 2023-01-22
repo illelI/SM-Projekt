@@ -1,4 +1,4 @@
-package com.hurtownia;
+package com.hurtownia.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -10,9 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hurtownia.R;
 import com.hurtownia.database.user.Roles;
 import com.hurtownia.database.user.Users;
-import com.hurtownia.database.user.ViewModel;
+import com.hurtownia.database.user.UserViewModel;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText password;
     private EditText passwordConfirmation;
 
-    private ViewModel viewModel;
+    private UserViewModel userViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
         login = findViewById(R.id.etLogin);
         password = findViewById(R.id.etRegisterPassword);
         passwordConfirmation = findViewById(R.id.etConfirmPassword);
-        viewModel = new ViewModelProvider(this).get(ViewModel.class);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         toLoginActivity.setOnClickListener(view -> {
             Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
@@ -55,7 +56,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
             Toast.makeText(RegistrationActivity.this, registerResult, Toast.LENGTH_SHORT).show();
             if(registerResult == R.string.registration_successful) {
-                Users user = viewModel.find(sLogin);
+                Users user = userViewModel.find(sLogin);
                 Intent intent;
                 if(user.getRole() == Roles.Admin)
                     intent = new Intent(RegistrationActivity.this, AdminHomeActivity.class);
@@ -89,10 +90,10 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private int signUp(String login, String password) {
-        Users user = viewModel.find(login);
+        Users user = userViewModel.find(login);
         if(user != null) return R.string.already_exists;
         try {
-            viewModel.insert(new Users(login, password, Roles.User));
+            userViewModel.insert(new Users(login, password, Roles.User));
         } catch (Exception e) {
             return R.string.registration_failed;
         }

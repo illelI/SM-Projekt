@@ -1,4 +1,4 @@
-package com.hurtownia;
+package com.hurtownia.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.hurtownia.R;
+import com.hurtownia.database.user.Roles;
 import com.hurtownia.database.user.Users;
 import com.hurtownia.databinding.ActivityHomeBinding;
 
@@ -38,7 +40,11 @@ public class HomeActivity extends AppCompatActivity {
 
 
         products.setOnClickListener(view -> {
-            Intent intent = new Intent(HomeActivity.this, ProductsActivity.class);
+            Intent intent;
+            if(user.getRole() == Roles.User)
+                intent = new Intent(HomeActivity.this, ProductsActivity.class);
+            else
+                intent = new Intent(HomeActivity.this, ProductsEmployeeActivity.class);
             startActivity(intent);
         });
 

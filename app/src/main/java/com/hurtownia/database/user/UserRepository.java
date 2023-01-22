@@ -7,10 +7,10 @@ import com.hurtownia.database.DB;
 
 import java.util.concurrent.CountDownLatch;
 
-public class Repository {
-    private final UserPasswordDao dao;
+public class UserRepository {
+    private final UsersDao dao;
 
-    Repository(Application application) {
+    UserRepository(Application application) {
         DB db = DB.getDatabase(application);
         dao = db.upDao();
     }

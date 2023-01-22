@@ -1,14 +1,16 @@
-package com.hurtownia;
+package com.hurtownia.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ProductsActivity extends AppCompatActivity {
+import com.hurtownia.R;
+
+public class AdminHomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products);
+        setContentView(R.layout.activity_admin_home);
     }
 }
