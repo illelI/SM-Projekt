@@ -5,6 +5,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 @Dao
 public interface UsersDao {
@@ -16,4 +17,6 @@ public interface UsersDao {
     Users find(String login);
     @Query("UPDATE Users SET role = (:role) WHERE login = (:login)")
     void changeRole(String login,Roles role);
+    @Update
+    void update(Users user);
 }

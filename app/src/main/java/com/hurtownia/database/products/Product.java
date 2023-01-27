@@ -1,5 +1,6 @@
 package com.hurtownia.database.products;
 
+import android.graphics.Bitmap;
 import android.media.Image;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,8 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Products")
 public class Product {
+
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
@@ -17,11 +20,10 @@ public class Product {
     private String name;
     @ColumnInfo(name = "quantity")
     private int quantity;
-    @NonNull
-    @ColumnInfo(name = "image")
-    private Image image;
+    @ColumnInfo(name = "image", typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;
 
-    public Product(@NonNull String name, int quantity, @NonNull Image image) {
+    public Product(@NonNull String name, int quantity, byte[] image) {
         this.name = name;
         this.quantity = quantity;
         this.image = image;
@@ -45,12 +47,18 @@ public class Product {
         this.quantity += quantity;
     }
 
-    @NonNull
-    public Image getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(@NonNull Image image) {
+    public void setImage(@NonNull byte[] image) {
         this.image = image;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -1,6 +1,7 @@
 package com.hurtownia.activities;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
@@ -23,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     private EditText name;
     private EditText password;
-    private ImageView facebook;
     private UserViewModel userViewModel;
 
     @Override
@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         password = findViewById(R.id.etPassword);
         TextView register = findViewById(R.id.tvRegister);
         Button loginButton = findViewById(R.id.loginButton);
-        facebook = findViewById(R.id.iv_fb);
+        ImageView facebook = findViewById(R.id.iv_fb);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         facebook.setOnClickListener(view -> {
             Uri uri = Uri.parse("https://www.facebook.com/people/JabPol-Hurtownia-Jaboli-Nowe-Miasto/100089794506429/");

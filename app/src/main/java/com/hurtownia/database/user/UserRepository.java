@@ -44,8 +44,38 @@ public class UserRepository {
         try {
             latch.await();
         } catch (Exception e) {
-            Log.d("role","error");
+            Log.d("ROLE","error");
         }
-        Log.d("role", "changed");
+        Log.d("ROLE", "changed");
+    }
+    void update(Users user) {
+        CountDownLatch latch = new CountDownLatch(1);
+        new Thread(() -> {
+            synchronized (this) {
+                dao.update(user);
+                latch.countDown();
+            }
+        }).start();
+        try {
+            latch.await();
+        } catch (Exception e) {
+            Log.d("UPDATE","error");
+        }
+        Log.d("UPDATE", "updated");
+    }
+    void delete(Users user) {
+        CountDownLatch latch = new CountDownLatch(1);
+        new Thread(() -> {
+            synchronized (this) {
+                dao.delete(user);
+                latch.countDown();
+            }
+        }).start();
+        try {
+            latch.await();
+        } catch (Exception e) {
+            Log.d("DELETE","error");
+        }
+        Log.d("DELETE", "deleted");
     }
 }

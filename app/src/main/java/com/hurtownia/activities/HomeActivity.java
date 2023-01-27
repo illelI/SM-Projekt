@@ -12,7 +12,9 @@ import com.hurtownia.database.user.Roles;
 import com.hurtownia.database.user.Users;
 import com.hurtownia.databinding.ActivityHomeBinding;
 
-public class HomeActivity extends AppCompatActivity {
+import java.io.Serializable;
+
+public class HomeActivity extends AppCompatActivity implements Serializable {
 
     private Users user;
     LinearLayout logout;
@@ -45,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
                 intent = new Intent(HomeActivity.this, ProductsActivity.class);
             else
                 intent = new Intent(HomeActivity.this, ProductsEmployeeActivity.class);
+            intent.putExtra("USER", user);
             startActivity(intent);
         });
 

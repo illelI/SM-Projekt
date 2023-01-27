@@ -9,8 +9,8 @@ import com.hurtownia.database.DB;
 import java.util.List;
 
 public class ProductRepository {
-    private ProductDao pDao;
-    private LiveData<List<Product>> allProducts;
+    private final ProductDao pDao;
+    private final LiveData<List<Product>> allProducts;
 
     ProductRepository(Application application) {
         DB db = DB.getDatabase(application);
@@ -23,8 +23,6 @@ public class ProductRepository {
     }
 
     void insert(Product product) {
-        DB.dbWriteExecutor.execute(() -> {
-            pDao.insert(product);
-        });
+        DB.dbWriteExecutor.execute(() -> pDao.insert(product));
     }
 }

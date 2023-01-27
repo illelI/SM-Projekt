@@ -1,5 +1,8 @@
 package com.hurtownia.database;
+
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -8,11 +11,13 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.hurtownia.Hurtownia;
+import com.hurtownia.R;
 import com.hurtownia.database.products.Product;
 import com.hurtownia.database.products.ProductDao;
 import com.hurtownia.database.user.Roles;
-import com.hurtownia.database.user.UsersDao;
 import com.hurtownia.database.user.Users;
+import com.hurtownia.database.user.UsersDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,9 +36,13 @@ public abstract class DB extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase database) {
             super.onCreate(database);
             dbWriteExecutor.execute(() -> {
-                UsersDao dao = INSTANCE.upDao();
+                UsersDao udao = INSTANCE.upDao();
                 Users user = new Users("admin", "admin", Roles.Admin);
-                dao.insert(user);
+                udao.insert(user);
+                ProductDao productDao = INSTANCE.pDao();
+                Bitmap icon = BitmapFactory.decodeResource(Hurtownia.getContext().getResources(), R.drawable.fbicon);
+                Product product = new Product("Snajper mocny", 12, DataConverter.convertToByteArray(icon));
+                productDao.insert(product);
             });
         }
     };

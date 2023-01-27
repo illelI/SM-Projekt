@@ -20,4 +20,10 @@ public class UserViewModel extends AndroidViewModel {
     public void changeRole(String login, Roles role) {
         uRepository.changeRole(login, role);
     }
+    public void update(Users user) {
+        uRepository.update(user);
+    }
+    public void delete(Users user) {
+        uRepository.delete(user);
+    }
 }

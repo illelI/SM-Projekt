@@ -20,4 +20,11 @@
     <string name="settings">Ustawienia</string>
     <string name="logout">Wyloguj</string>
     <string name="search">Wyszukaj</string>
+    <string name="change_password">Zmień hasło</string>
+    <string name="new_password">Wprowadź nowe hasło:</string>
+    <string name="new_password_confirm">Potwierdź nowe hasło:</string>
+    <string name="delete_account">Usuń konto</string>
+    <string name="empty_password">Hasło nie może być puste!</string>
+    <string name="password_changed">Hasło zostało zmienione</string>
+    <string name="account_deleted">Konto zostało usunięte</string>
 </resources>
