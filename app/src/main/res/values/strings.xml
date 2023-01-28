@@ -27,4 +27,12 @@
     <string name="empty_password">Hasło nie może być puste!</string>
     <string name="password_changed">Hasło zostało zmienione</string>
     <string name="account_deleted">Konto zostało usunięte</string>
+    <string name="users">Użytkownicy</string>
+    <string name="price">Cena: </string>
+    <string name="name">Nazwa: </string>
+    <string name="quantity">Ilość: </string>
+    <string name="photo">Zrób zdjęcie</string>
+    <string name="or"> lub </string>
+    <string name="gallety">Wybierz z galerii</string>
+    <string name="add_product">Dodaj produkt</string>
 </resources>

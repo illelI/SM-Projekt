@@ -21,6 +21,7 @@ import com.hurtownia.recyclerview.products.ProductsAdapter;
 public class ProductsFragment extends Fragment {
     private ProductViewModel pvm;
     private Users user;
+
     public ProductsFragment(Users user) {
         this.user = user;
     }
@@ -36,7 +37,6 @@ public class ProductsFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         pvm.getAllProducts().observe(getViewLifecycleOwner(), adapter::submitList);
-        Toast.makeText(this.getContext(), user.getRole().toString(), Toast.LENGTH_SHORT).show();
         return view;
     }
     public static ProductsFragment newInstance(Users user) {

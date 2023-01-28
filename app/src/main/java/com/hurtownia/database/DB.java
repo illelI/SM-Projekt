@@ -41,7 +41,7 @@ public abstract class DB extends RoomDatabase {
                 udao.insert(user);
                 ProductDao productDao = INSTANCE.pDao();
                 Bitmap icon = BitmapFactory.decodeResource(Hurtownia.getContext().getResources(), R.drawable.fbicon);
-                Product product = new Product("Snajper mocny", 12, DataConverter.convertToByteArray(icon));
+                Product product = new Product("Snajper mocny", 12, 5.99f ,DataConverter.convertToByteArray(icon));
                 productDao.insert(product);
             });
         }

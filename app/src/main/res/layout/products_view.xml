@@ -5,6 +5,8 @@
     android:layout_marginTop="10dp"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -28,11 +30,18 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         tools:text="Quantity"/>
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/imageView"
+        android:layout_below="@id/quantity" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_below="@id/imageView"
         android:background="#DAD8D8"
         android:layout_marginTop="10dp"/>
+
 
 </RelativeLayout>

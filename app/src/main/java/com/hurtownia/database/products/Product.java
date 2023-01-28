@@ -20,13 +20,16 @@ public class Product {
     private String name;
     @ColumnInfo(name = "quantity")
     private int quantity;
+    @ColumnInfo(name = "price")
+    private float price;
     @ColumnInfo(name = "image", typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
 
-    public Product(@NonNull String name, int quantity, byte[] image) {
+    public Product(@NonNull String name, int quantity, float price ,byte[] image) {
         this.name = name;
         this.quantity = quantity;
         this.image = image;
+        this.price = price;
     }
 
 
@@ -60,5 +63,12 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+    public float getPrice(){
+        return price;
     }
 }

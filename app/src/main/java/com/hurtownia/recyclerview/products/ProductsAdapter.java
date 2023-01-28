@@ -14,14 +14,15 @@ public class ProductsAdapter extends ListAdapter<Product, ProductsViewHolder> {
     public ProductsAdapter(@NonNull DiffUtil.ItemCallback<Product> diffCallback) {
         super(diffCallback);
     }
+    @NonNull
     @Override
-    public ProductsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProductsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return ProductsViewHolder.create(parent);
     }
     @Override
     public void onBindViewHolder(ProductsViewHolder holder, int position) {
         Product current = getItem(position);
-        holder.bind(current.getName(), current.getQuantity(), current.getImage());
+        holder.bind(current.getName(), current.getQuantity(), current.getPrice() ,current.getImage());
     }
     static public class ProductDiff extends DiffUtil.ItemCallback<Product> {
         @Override
@@ -30,7 +31,7 @@ public class ProductsAdapter extends ListAdapter<Product, ProductsViewHolder> {
         }
         @Override
         public boolean areContentsTheSame(@NonNull Product oldItem, @NonNull Product newItem) {
-            return oldItem.getName().equals(newItem.getName()) && oldItem.getQuantity() == newItem.getQuantity() && Arrays.equals(oldItem.getImage(), newItem.getImage());
+            return oldItem.getName().equals(newItem.getName()) && oldItem.getQuantity() == newItem.getQuantity() && Arrays.equals(oldItem.getImage(), newItem.getImage()) && oldItem.getPrice() == newItem.getPrice();
         }
     }
 }

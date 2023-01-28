@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,7 +22,8 @@ public class ProductsEmployeeActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         user = (Users) getIntent().getExtras().get("USER");
         fab.setOnClickListener(view -> {
-
+            Intent intent = new Intent(ProductsEmployeeActivity.this, AddProductActivity.class);
+            startActivity(intent);
         });
         displayFragment();
     }
