@@ -1,9 +1,6 @@
 package com.hurtownia.activities;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -23,9 +20,29 @@ public class ProductsActivity extends AppCompatActivity {
         displayFragment();
     }
     public void displayFragment() {
-        ProductsFragment fragment = ProductsFragment.newInstance(user);
+        ProductsFragment fragment = ProductsFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.products_fragment_containter, fragment).addToBackStack(null).commit();
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
