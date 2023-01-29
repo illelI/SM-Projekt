@@ -57,6 +57,8 @@ public class HomeActivity extends AppCompatActivity implements Serializable {
             startActivity(intent);
         });
 
+        location.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, LocationActivity.class)));
+
     }
     @Override
     protected void onStart() {

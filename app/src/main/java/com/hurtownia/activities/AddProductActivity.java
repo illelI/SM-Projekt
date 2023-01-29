@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,10 +27,7 @@ public class AddProductActivity extends AppCompatActivity {
     private EditText etName;
     private EditText etQuantity;
     private EditText etPrice;
-    private Button btnPhoto;
-    private Button add;
     private ProductViewModel pvm;
-    private ImageView photoView;
     private static final int CAMERA_INTENT = 5000;
     private static final int CAMERA_REQUEST_CODE = 6000;
     String name;
@@ -46,23 +42,22 @@ public class AddProductActivity extends AppCompatActivity {
         etName = findViewById(R.id.et_name);
         etQuantity = findViewById(R.id.et_quantity);
         etPrice = findViewById(R.id.et_price);
-        btnPhoto = findViewById(R.id.btn_photo);
-        add = findViewById(R.id.btn_add_product);
-        photoView = findViewById(R.id.iv_photo);
+        Button btnPhoto = findViewById(R.id.btn_photo);
+        Button add = findViewById(R.id.btn_add_product);
         binding = ActivityAddProductBinding.inflate(getLayoutInflater());
         pvm = new ViewModelProvider(this).get(ProductViewModel.class);
-        btnPhoto.setOnClickListener(view -> {
-            takePhoto();
-        });
+        btnPhoto.setOnClickListener(view -> takePhoto());
         add.setOnClickListener(view -> {
             name = etName.getText().toString();
             quantity = Integer.parseInt(etQuantity.getText().toString());
             price = Float.parseFloat(etPrice.getText().toString());
             if(photo == null || name.isEmpty() || price == 0.0f) {
+                Toast.makeText(this, R.string.empty,Toast.LENGTH_SHORT).show();
             }
             else {
                 Product product = new Product(name, quantity, price, DataConverter.convertToByteArray(photo));
                 pvm.insert(product);
+                startActivity(new Intent(AddProductActivity.this, ProductsActivity.class));
             }
         });
     }
@@ -95,5 +90,25 @@ public class AddProductActivity extends AppCompatActivity {
             photo = (Bitmap) data.getExtras().get("data");
             binding.ivPhoto.setImageBitmap(photo);
         }
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
