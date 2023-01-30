@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name"></string>
     <string name="name_hint">Enter login:</string>
-    <string name="password_hint">Enter password:</string>
     <string name="password_hint">Enter password:</string>
     <string name="login_button">Login</string>
     <string name="empty_login_or_password">Login and password cannot be empty!</string>
@@ -37,4 +35,9 @@
     <string name="add_product">Add product</string>
     <string name="route">Route</string>
     <string name="empty">Fields cannot be empt</string>
+    <string name="password">Password:</string>
+    <string name="role">Role:</string>
+    <string name="user">User</string>
+    <string name="employee">Employee</string>
+    <string name="update">Update</string>
 </resources>

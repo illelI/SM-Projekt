@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.hurtownia.R;
 import com.hurtownia.database.user.Roles;
 import com.hurtownia.database.user.Users;
+import com.hurtownia.databinding.ActivityAdminHomeBinding;
 import com.hurtownia.databinding.ActivityHomeBinding;
 
 public class AdminHomeActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
         user = (Users) getIntent().getExtras().get("USER");
-        ActivityHomeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
+        ActivityAdminHomeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_admin_home);
         binding.setUser(user);
         logout = findViewById(R.id.ll_logout);
         products = findViewById(R.id.ll_products);
@@ -58,6 +59,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         });
 
         location.setOnClickListener(view -> startActivity(new Intent(AdminHomeActivity.this, LocationActivity.class)));
+        users.setOnClickListener(view -> startActivity(new Intent(AdminHomeActivity.this, UsersActivity.class)));
     }
     @Override
     protected void onStart() {
