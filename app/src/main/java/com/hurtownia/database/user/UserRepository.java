@@ -5,14 +5,27 @@ import android.util.Log;
 
 import com.hurtownia.database.DB;
 
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 public class UserRepository {
     private final UsersDao dao;
-
+    private List<Users> allUsers;
     UserRepository(Application application) {
         DB db = DB.getDatabase(application);
         dao = db.upDao();
+        CountDownLatch latch = new CountDownLatch(1);
+        new Thread(() -> {
+            synchronized (this) {
+                allUsers = dao.getAllUsers();
+                latch.countDown();
+            }
+        }).start();
+        try {
+            latch.await();
+        } catch (Exception e) {
+            Log.d("", "");
+        }
     }
     void insert(Users up) {
         DB.dbWriteExecutor.execute(() -> dao.insert(up));
@@ -77,5 +90,8 @@ public class UserRepository {
             Log.d("DELETE","error");
         }
         Log.d("DELETE", "deleted");
+    }
+    List<Users> getAllUsers() {
+        return allUsers;
     }
 }

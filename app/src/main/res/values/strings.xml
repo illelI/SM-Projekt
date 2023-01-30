@@ -31,10 +31,15 @@
     <string name="name">Nazwa: </string>
     <string name="quantity">Ilość: </string>
     <string name="photo">Zrób zdjęcie</string>
-    <string name="or"> lub </string>
-    <string name="gallety">Wybierz z galerii</string>
     <string name="add_product">Dodaj produkt</string>
     <string name="route">Trasa</string>
     <string name="empty">Pola nie mogą być puste!</string>
-    <string name="app_name">Hurtownia</string>
+    <string name="app_name" translatable="false">Hurtownia</string>
+    <string name="login" translatable="false">Login: </string>
+    <string name="password">Hasło: </string>
+    <string name="role">Rola:</string>
+    <string name="user">Użytkownik</string>
+    <string name="employee">Pracownik</string>
+    <string name="admin" translatable="false">Admin</string>
+    <string name="update">Zaktualizuj</string>
 </resources>

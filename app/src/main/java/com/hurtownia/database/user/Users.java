@@ -12,7 +12,7 @@ public class Users implements Serializable {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "login")
-    private final String login;
+    private String login;
     @NonNull
     @ColumnInfo(name = "password")
     private String password;
@@ -47,5 +47,9 @@ public class Users implements Serializable {
 
     public void setRole(@NonNull Roles role) {
         this.role = role;
+    }
+
+    public void setLogin(@NonNull String login) {
+        this.login = login;
     }
 }
