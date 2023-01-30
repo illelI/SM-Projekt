@@ -36,10 +36,10 @@ public class UserInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_user_info);
-        view = getLayoutInflater().inflate(R.layout.activity_user_info, null, false);
-        setContentView(view);
+        setContentView(R.layout.activity_user_info);
         user = (Users) getIntent().getExtras().get("USER");
+        ActivityUserInfoBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_user_info);
+        binding.setUser(user);
         login = findViewById(R.id.et_info_login);
         password = findViewById(R.id.et_info_password);
         role = findViewById(R.id.role);
@@ -52,8 +52,6 @@ public class UserInfoActivity extends AppCompatActivity {
         admin.setOnClickListener(view -> admin.setChecked(true));
         employee.setOnClickListener(view -> employee.setChecked(true));
         rUser.setOnClickListener(view -> rUser.setChecked(true));
-        ActivityUserInfoBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_user_info);
-        binding.setUser(user);
         switch (user.getRole()) {
             case Admin:
                 binding.setVrole(R.id.admin);
@@ -71,7 +69,6 @@ public class UserInfoActivity extends AppCompatActivity {
         startActivity(new Intent(UserInfoActivity.this, UsersActivity.class));
     }
     public void update(View v) {
-        String tmp = login.getText().toString();
         Log.d("user", user.getLogin() + user.getPassword() + user.getRole());
         user.setLogin(login.getText().toString());
         user.setPassword(password.getText().toString());
@@ -83,8 +80,6 @@ public class UserInfoActivity extends AppCompatActivity {
             user.setRole(Roles.User);
         Log.d("user", user.getLogin() + user.getPassword() + user.getRole());
         uvm.update(user);
-        Log.d("user", user.getLogin() + user.getPassword() + user.getRole());
-        Log.d("user", tmp);
         startActivity(new Intent(UserInfoActivity.this, UsersActivity.class));
     }
 
